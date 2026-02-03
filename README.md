@@ -18,4 +18,4 @@ A real-time data collection and visualization platform built with React frontend
 - **Data Science Engineer**: Backend analytics, data modeling, Power BI
 
 ## Getting Started
-[Add setup instructions here]
+............to be continued
