@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "number",
+      "description": "Unique identifier for the data entry"
+    },
+    "value": {
+      "type": "string",
+      "description": "The main data value submitted by users"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of when the data was submitted"
+    },
+    "userType": {
+      "type": "string",
+      "enum": ["Viewer", "Contributor"],
+      "description": "Type of user who submitted the data"
+    }
+  },
+  "required": ["id", "value", "timestamp"]
+}
