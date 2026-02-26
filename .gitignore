@@ -1,0 +1,13 @@
+node_modules/
+.env
+dist/
+build/
+coverage/
+*.log
+.DS_Store
+.vscode/
+
+# Python / Analytics
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
