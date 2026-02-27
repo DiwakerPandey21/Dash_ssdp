@@ -1,23 +1,36 @@
-import { useState } from 'react';
 import LiveDashboard from '../components/LiveDashboard';
 import DataForm from '../components/DataForm';
-import ModeSelector from '../components/ModeSelector';
+import useAuthStore from '../store/authStore';
+import { useLiveData } from '../hooks/useLiveData';
+import { Activity } from 'lucide-react';
 
 const DashboardPage = () => {
-    const [isContributor, setContributor] = useState(false);
+    const { user } = useAuthStore();
+    const data = useLiveData();
+    const isContributor = user?.role === 'CONTRIBUTOR' || user?.role === 'ADMIN';
 
     return (
-        <div className="max-w-5xl mx-auto p-4 md:p-8">
-            <h1 className="text-3xl font-extrabold text-gray-800 mb-8">Dashboard Platform</h1>
-            <ModeSelector isContributor={isContributor} setContributor={setContributor} />
+        <div className="h-full flex flex-col">
+            <div className="mb-8 flex justify-between items-end">
+                <div>
+                    <h1 className="text-3xl font-extrabold text-slate-800 tracking-tight">System Overview</h1>
+                    <p className="text-slate-500 mt-1">Real-time metrics and event stream</p>
+                </div>
+                {!isContributor && (
+                    <div className="bg-amber-50 text-amber-700 border border-amber-200 px-4 py-2 rounded-xl text-sm font-medium flex items-center gap-2">
+                        <Activity size={16} />
+                        Read-Only View (Requires Contributor Role)
+                    </div>
+                )}
+            </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <main className={`col-span-1 ${isContributor ? 'md:col-span-2' : 'md:col-span-3'}`}>
-                    <LiveDashboard />
+            <div className="grid grid-cols-1 xl:grid-cols-4 gap-6 flex-1 min-h-0">
+                <main className={`flex flex-col min-h-0 ${isContributor ? 'xl:col-span-3' : 'xl:col-span-4'}`}>
+                    <LiveDashboard data={data} />
                 </main>
 
                 {isContributor && (
-                    <aside className="col-span-1">
+                    <aside className="xl:col-span-1 h-[400px] xl:h-[auto]">
                         <DataForm />
                     </aside>
                 )}

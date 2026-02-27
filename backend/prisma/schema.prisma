@@ -1,0 +1,37 @@
+// This is your Prisma schema file.
+// Learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// For Vercel Serverless, connection pooling is recommended, often via Prisma Accelerate or Supabase/Neon connection poolers.
+datasource db {
+  provider = "postgresql"
+  // directUrl = env("DIRECT_URL") // Used if using Supabase/Neon pooling
+}
+
+enum Role {
+  VIEWER
+  CONTRIBUTOR
+  ADMIN
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  role      Role     @default(VIEWER)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  events    Event[]
+}
+
+model Event {
+  id        String   @id @default(uuid())
+  source    String
+  payload   Json
+  timestamp DateTime @default(now())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+}

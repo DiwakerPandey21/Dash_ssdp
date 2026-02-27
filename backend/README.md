@@ -1,7 +1,9 @@
-# Backend
+# Vercel Serverless API Setup
 
-Node.js setup managing DB integrations, REST API routing, and Socket.IO for real-time pushing.
+This architecture replaces the older Express instance. Because Vercel kills Serverless Functions after they respond, we use Pusher for WebSockets and Power BI for the heavy analytical lifting.
 
-## Scripts
-- `npm start`
-- `npm run dev`
+### The Stack
+- **Database**: PostgreSQL (Neon.tech or Supabase).
+- **ORM**: Prisma.
+- **Real-time**: Pusher Channels.
+- **Data Science**: Power BI (Embedded into the Frontend).

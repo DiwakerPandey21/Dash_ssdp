@@ -1,16 +1,12 @@
-# React + Vite
+# Frontend Setup (Vercel & Power BI)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Built using React + Tailwind CSS v4.
 
-Currently, two official plugins are available:
+This Next.js/Vite frontend serves two primary purposes in our Duo-Team architecture:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. **Contributor Mode (Web Dev Role)**: A highly interactive, premium UI built with Glassmorphism where data can be ingested directly into the PostgreSQL Database via Vercel Serverless Functions.
+2. **Analytics Viewer (Data Science Role)**: A dedicated embedded `<iframe>` / `powerbi-client-react` view that seamlessly surfaces the stunning Power BI Dashboards authored by the Data Scientist partner.
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Deployments
+- `npm run build`
+- Linked directly to Vercel GitHub integration.
