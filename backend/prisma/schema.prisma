@@ -7,21 +7,16 @@ generator client {
 
 // For Vercel Serverless, connection pooling is recommended, often via Prisma Accelerate or Supabase/Neon connection poolers.
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
+  url      = "file:./dev.db"
   // directUrl = env("DIRECT_URL") // Used if using Supabase/Neon pooling
-}
-
-enum Role {
-  VIEWER
-  CONTRIBUTOR
-  ADMIN
 }
 
 model User {
   id        String   @id @default(uuid())
   email     String   @unique
   password  String
-  role      Role     @default(VIEWER)
+  role      String   @default("VIEWER") // "VIEWER" | "CONTRIBUTOR" | "ADMIN"
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   events    Event[]
@@ -30,7 +25,7 @@ model User {
 model Event {
   id        String   @id @default(uuid())
   source    String
-  payload   Json
+  payload   String   // Storing JSON stringified for SQLite
   timestamp DateTime @default(now())
   userId    String
   user      User     @relation(fields: [userId], references: [id])
